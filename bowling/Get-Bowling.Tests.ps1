@@ -15,9 +15,11 @@ Describe 'Bowling-Roll' {
         Bowling-Roll -scoreCard $scoreCard
         $scoreCard | Should -Be $scoreCard
     }
-    It 'Records a gutter ball and returns a score of 0' {
+    It 'Records a gutter game' {
         $scoreCard = Get-Bowling
-        Bowling-Roll -scoreCard $scoreCard -pins 0
+        for($i = 0; $i -lt 20; $i++) {
+            Bowling-Roll -scoreCard $scoreCard -pins 0
+        }
         $scoreCard.score | Should -Be 0
     }
     It 'Records a 3 and a 4 and returns a score of 7' {
