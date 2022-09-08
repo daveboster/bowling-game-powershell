@@ -1,2 +1,4 @@
-function Get-Bowling () {   
+function Get-Bowling () {
+    $scorecard = {}
+    return $scorecard
 }
