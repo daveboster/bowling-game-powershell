@@ -10,25 +10,20 @@ Describe 'Get-Bowling' {
 }
 
 Describe 'Bowling-Roll' {
-    It 'Can roll a ball' {
-        $scoreCard = Get-Bowling
-        Bowling-Roll -scoreCard $scoreCard
-    }
-
     It 'Roll a ball returns a scorecard' {
         $scoreCard = Get-Bowling
-        $updatedScoreCard = Bowling-Roll -scoreCard $scoreCard
-        $updatedScoreCard | Should -Be $scoreCard
+        Bowling-Roll -scoreCard $scoreCard
+        $scoreCard | Should -Be $scoreCard
     }
     It 'Records a gutter ball and returns a score of 0' {
         $scoreCard = Get-Bowling
-        $updatedScoreCard = Bowling-Roll -scoreCard $scoreCard -pins 0
-        $updatedScoreCard.score | Should -Be 0
+        Bowling-Roll -scoreCard $scoreCard -pins 0
+        $scoreCard.score | Should -Be 0
     }
     It 'Records a 3 and a 4 and returns a score of 7' {
         $scoreCard = Get-Bowling
-        $updatedScoreCard = Bowling-Roll -scoreCard $scoreCard -pins 3
-        $updatedScoreCard = Bowling-Roll -scoreCard $updatedScoreCard -pins 4
-        $updatedScoreCard.score | Should -Be 7
+        Bowling-Roll -scoreCard $scoreCard -pins 3
+        Bowling-Roll -scoreCard $scoreCard -pins 4
+        $scoreCard.score | Should -Be 7
     }
 }
