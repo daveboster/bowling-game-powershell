@@ -28,4 +28,8 @@ Describe 'Bowling-Roll' {
         Bowling-Roll -scoreCard $scoreCard -pins 4
         $scoreCard.score | Should -Be 7
     }
+    It 'Rolling will not let you roll more than 10 pins' {
+        $scoreCard = Get-Bowling
+        { Bowling-Roll -scoreCard $scoreCard -pins 11 } | Should -Throw
+    }
 }
