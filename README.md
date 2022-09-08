@@ -11,15 +11,27 @@ How can we do a CI/CD for PowerShell scripts?
 Path: `./github-actions'
 * Testing whether we can use GitHub actions to test
 
+
+## Installation 
+
+### Prerequisites - MacOS
+1. Install PowerShell via Homebrew `brew install --cask powershell`
+
+### Prerequisites - Windows 10
+1. Uninstall the built-in version of Pester using [Pester Installation](https://pester.dev/docs/introduction/installation).
+
+### Install Pester
+1. Install Pester module locally using `Install-Module Pester -Force`.
+1. Run the command `Import-Module Pester -PassThru` and you should see it return.
+
+### VSCode Extension
+- Pester Test Explorer
+- Pester Tests
+
 ### Adding Pester Tests
-1. Install Pester module locally using ``.
-1. Create initial test file (using Get-Planet function).
-1. Adding some additional tests.
-1. Get notified when actions are run.
-    - Adding a workflow badge
-    - Get workflow notifications in GitHub Desktop ([GitHub Notifications](https://docs.github.com/en/account-and-profile/managing-subscriptions-and-notifications-on-github/setting-up-notifications/about-notifications))
-1. Limit triggering Workflow when PowerShell changes ([GithHub Actions: On-Push-Paths](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#onpushpull_requestpull_request_targetpathspaths-ignore))
-1. [Splitting to tests and function](https://pester.dev/docs/quick-start#splitting-to-tests-and-function).
+From the [Pester QuickStart](https://pester.dev/docs/quick-start)
+1. Review initial test file (using Get-Planet function) in the Sample-Test directory.
+1. From PowerShell run `Invoke-Pester` or use VSCode Test Explorer.
 
 
 ### Resources
