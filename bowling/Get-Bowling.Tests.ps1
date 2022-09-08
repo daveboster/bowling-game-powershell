@@ -20,4 +20,9 @@ Describe 'Bowling-Roll' {
         $updatedScoreCard = Bowling-Roll -scoreCard $scoreCard
         $updatedScoreCard | Should -Be $scoreCard
     }
+    It 'Records a gutter ball and returns a score of 0' {
+        $scoreCard = Get-Bowling
+        $updatedScoreCard = Bowling-Roll -scoreCard $scoreCard -pins 0
+        $updatedScoreCard.score | Should -Be 0
+    }
 }

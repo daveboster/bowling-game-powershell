@@ -1,7 +1,8 @@
 function Get-Bowling () {
-    return {};
+    return @{score=0};
 }
 
-function Bowling-Roll ($scoreCard) {
+function Bowling-Roll ($scoreCard, $pins) {
+    $scoreCard.score = $pins
     return $scoreCard;
 }
