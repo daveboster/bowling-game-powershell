@@ -1,6 +1,7 @@
 # bowling-game-powershell
 Bowling game example implemented with PowerShell and the Pester TDD framework.
 
+Testing
 
 [![Test PowerShell on Ubuntu](https://github.com/daveboster/azure-powershell/actions/workflows/powershell-actions.yml/badge.svg)](https://github.com/daveboster/azure-powershell/actions/workflows/powershell-actions.yml)
 
