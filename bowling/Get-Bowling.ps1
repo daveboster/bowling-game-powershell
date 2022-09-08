@@ -3,6 +3,6 @@ function Get-Bowling () {
 }
 
 function Bowling-Roll ($scoreCard, $pins) {
-    $scoreCard.score = $pins
+    $scoreCard.score += $pins
     return $scoreCard;
 }
