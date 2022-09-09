@@ -10,11 +10,6 @@ Describe 'Get-Bowling' {
 }
 
 Describe 'Bowling-Roll' {
-    It 'Roll a ball returns a scorecard' {
-        $scoreCard = Get-Bowling
-        Bowling-Roll -scoreCard $scoreCard
-        $scoreCard | Should -Be $scoreCard
-    }
     It 'Records a gutter game' {
         $scoreCard = Get-Bowling
         for($i = 0; $i -lt 20; $i++) {
@@ -31,5 +26,9 @@ Describe 'Bowling-Roll' {
     It 'Rolling will not let you roll more than 10 pins' {
         $scoreCard = Get-Bowling
         { Bowling-Roll -scoreCard $scoreCard -pins 11 } | Should -Throw
+    }
+    It 'Rolling will not let you roll less than 0 pins' {
+        $scoreCard = Get-Bowling
+        { Bowling-Roll -scoreCard $scoreCard -pins (-1) } | Should -Throw
     }
 }
