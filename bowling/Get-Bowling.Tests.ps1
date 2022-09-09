@@ -31,4 +31,9 @@ Describe 'Bowling-Roll' {
         $scoreCard = Get-Bowling
         { Bowling-Roll -scoreCard $scoreCard -pins (-1) } | Should -Throw
     }
+    It 'Rolling will not let you knock down more than 10 pins per frame' {
+        $scoreCard = Get-Bowling
+        Bowling-Roll -scoreCard $scoreCard -pins 7
+        {Bowling-Roll -scoreCard $scoreCard -pins 7} | Should -Throw
+    }
 }
