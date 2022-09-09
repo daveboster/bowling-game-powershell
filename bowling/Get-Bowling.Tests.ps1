@@ -36,4 +36,12 @@ Describe 'Bowling-Roll' {
         Bowling-Roll -scoreCard $scoreCard -pins 7
         {Bowling-Roll -scoreCard $scoreCard -pins 7} | Should -Throw
     }
+    It 'Rolling will not let you knock down more than 10 pins for the second frame' {
+        $scoreCard = Get-Bowling
+        Bowling-Roll -scoreCard $scoreCard -pins 3
+        Bowling-Roll -scoreCard $scoreCard -pins 3
+        Bowling-Roll -scoreCard $scoreCard -pins 7
+        {Bowling-Roll -scoreCard $scoreCard -pins 7} | Should -Throw
+
+    }
 }
