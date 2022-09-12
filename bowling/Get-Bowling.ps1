@@ -13,7 +13,7 @@ function Bowling-Roll ($scoreCard, $pins) {
         1 {
             $scoreCard.ball += 1;
             $scoreCard.frameScore = $pins;
-            if ($scoreCard.prevFrameScore -eq 10 -and $scoreCard.frame -ne 10) {
+            if ($scoreCard.prevFrameScore -eq 10 -and $scoreCard.frame -ne 11) {
               $scoreCard.score += $pins;
             }
          }

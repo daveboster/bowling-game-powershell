@@ -77,4 +77,18 @@ Describe 'Bowling-Roll' {
         Bowling-Roll -scoreCard $scoreCard -pins 8
         $scoreCard.score | Should -Be(180)
     }
+    It 'Rolling 9 for the first 9 frames, and then more than 10 in the 10th frame is scored correctly' {
+        $scoreCard = Get-Bowling
+
+        for($i = 0; $i -lt 9; $i++) {
+            Bowling-Roll -scoreCard $scoreCard -pins 7
+            Bowling-Roll -scoreCard $scoreCard -pins 2
+        }
+        # tenth frame, first 2 balls total 10
+        Bowling-Roll -scoreCard $scoreCard -pins 7
+        Bowling-Roll -scoreCard $scoreCard -pins 3
+        # I get an extra ball
+        Bowling-Roll -scoreCard $scoreCard -pins 8
+        $scoreCard.score | Should -Be(99)
+    }
 }
