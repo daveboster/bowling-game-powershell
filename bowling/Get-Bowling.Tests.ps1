@@ -51,4 +51,19 @@ Describe 'Bowling-Roll' {
       Bowling-Roll -scoreCard $scoreCard -pins 1
       $scoreCard.score | Should -Be(25)
     }
+    It 'Rolling two spares in a row, should be correctly scored in the third frame' {
+      $scoreCard = Get-Bowling
+      # Frame 1 - Spare
+      Bowling-Roll -scoreCard $scoreCard -pins 8
+      Bowling-Roll -scoreCard $scoreCard -pins 2
+      # Frame 2 - Spare
+      Bowling-Roll -scoreCard $scoreCard -pins 7
+      $scoreCard.score | Should -Be(24)
+      Bowling-Roll -scoreCard $scoreCard -pins 3
+      # Frame 3 - No Spare
+      Bowling-Roll -scoreCard $scoreCard -pins 7
+      $scoreCard.score | Should -Be(41)
+      Bowling-Roll -scoreCard $scoreCard -pins 2
+      $scoreCard.score | Should -Be(43)
+    }
 }
