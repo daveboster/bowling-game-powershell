@@ -58,12 +58,23 @@ Describe 'Bowling-Roll' {
       Bowling-Roll -scoreCard $scoreCard -pins 2
       # Frame 2 - Spare
       Bowling-Roll -scoreCard $scoreCard -pins 7
-      $scoreCard.score | Should -Be(24)
+      #$scoreCard.score | Should -Be(24) BAD PROGRAMMER b/c testing behaviour not output
       Bowling-Roll -scoreCard $scoreCard -pins 3
       # Frame 3 - No Spare
       Bowling-Roll -scoreCard $scoreCard -pins 7
-      $scoreCard.score | Should -Be(41)
+      #$scoreCard.score | Should -Be(41) # BAD PROGRAMMER b/c testing behaviour not output
       Bowling-Roll -scoreCard $scoreCard -pins 2
       $scoreCard.score | Should -Be(43)
+    }
+    It 'Rolling ten spares in a row, after an extra ball, will calculate the total score correctly' {
+        $scoreCard = Get-Bowling
+
+        for($i = 0; $i -lt 10; $i++) {
+            Bowling-Roll -scoreCard $scoreCard -pins 8
+            Bowling-Roll -scoreCard $scoreCard -pins 2
+        }
+        # I get an extra ball
+        Bowling-Roll -scoreCard $scoreCard -pins 8
+        $scoreCard.score | Should -Be(180)
     }
 }
