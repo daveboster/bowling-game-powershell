@@ -1,5 +1,5 @@
 function Get-Bowling () {
-    return @{score=0; prevFrameScore=0; frameScore=0; ball=1};
+    return @{score=0; prevFrameScore=0; frameScore=0; ball=1; frame=1;};
 }
 
 function Bowling-Roll ($scoreCard, $pins) {
@@ -13,7 +13,7 @@ function Bowling-Roll ($scoreCard, $pins) {
         1 {
             $scoreCard.ball += 1;
             $scoreCard.frameScore = $pins;
-            if ($scoreCard.prevFrameScore -eq 10) {
+            if ($scoreCard.prevFrameScore -eq 10 -and $scoreCard.frame -ne 10) {
               $scoreCard.score += $pins;
             }
          }
@@ -23,6 +23,7 @@ function Bowling-Roll ($scoreCard, $pins) {
             }
             $scorecard.ball = 1;
             $scoreCard.prevFrameScore = $scoreCard.frameScore + $pins;
+            $scoreCard.frame += 1;
         }
     }
     $scoreCard.score += $pins;
