@@ -42,6 +42,13 @@ Describe 'Bowling-Roll' {
         Bowling-Roll -scoreCard $scoreCard -pins 3
         Bowling-Roll -scoreCard $scoreCard -pins 7
         {Bowling-Roll -scoreCard $scoreCard -pins 7} | Should -Throw
-
+    }
+    It 'Rolling a spare in the first frame will be correctly scored in the second frame' {
+      $scoreCard = Get-Bowling
+      Bowling-Roll -scoreCard $scoreCard -pins 8
+      Bowling-Roll -scoreCard $scoreCard -pins 2
+      Bowling-Roll -scoreCard $scoreCard -pins 7
+      Bowling-Roll -scoreCard $scoreCard -pins 1
+      $scoreCard.score | Should -Be(25)
     }
 }

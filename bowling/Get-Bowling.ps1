@@ -1,5 +1,5 @@
 function Get-Bowling () {
-    return @{score=0; frameScore=0; ball=1};
+    return @{score=0; prevFrameScore=0; frameScore=0; ball=1};
 }
 
 function Bowling-Roll ($scoreCard, $pins) {
@@ -13,12 +13,16 @@ function Bowling-Roll ($scoreCard, $pins) {
         1 {
             $scoreCard.ball += 1;
             $scoreCard.frameScore = $pins;
+            if ($scoreCard.prevFrameScore -eq 10) {
+              $scoreCard.score += $pins;
+            }
          }
         2 {
             if ($scoreCard.frameScore + $pins -gt 10) {
                 throw "Total pins in a frame can not exceed 10";
             }
             $scorecard.ball = 1;
+            $scoreCard.prevFrameScore = $scoreCard.frameScore + $pins;
         }
     }
     $scoreCard.score += $pins;
