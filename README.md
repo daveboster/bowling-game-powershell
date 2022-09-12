@@ -27,3 +27,4 @@ Path: `./github-actions'
 - [Pester QuickStart](https://pester.dev/docs/quick-start)
 
 ### Backlog
+ - Have Pester Tests Run automatically when we change files (VSCodepoiwers)
