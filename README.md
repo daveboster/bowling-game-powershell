@@ -3,7 +3,7 @@ Bowling game example implemented with PowerShell and the Pester TDD framework.
 
 Testing
 
-[![Test PowerShell on Ubuntu](https://github.com/daveboster/azure-powershell/actions/workflows/powershell-actions.yml/badge.svg)](https://github.com/daveboster/azure-powershell/actions/workflows/powershell-actions.yml)
+[![Test PowerShell on Ubuntu](https://github.com/daveboster/bowling-game-powershell/actions/workflows/powershell-actions.yml/badge.svg)](https://github.com/daveboster/bowling-game-powershell/actions/workflows/powershell-actions.yml)
 
 ## CI/CD for PowerShell
 How can we do a CI/CD for PowerShell scripts?
@@ -39,3 +39,4 @@ From the [Pester QuickStart](https://pester.dev/docs/quick-start)
 - [Pester QuickStart](https://pester.dev/docs/quick-start)
 
 ### Backlog
+ - Have Pester Tests Run automatically when we change files (VSCodepoiwers)

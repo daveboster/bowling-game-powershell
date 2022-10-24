@@ -42,6 +42,53 @@ Describe 'Bowling-Roll' {
         Bowling-Roll -scoreCard $scoreCard -pins 3
         Bowling-Roll -scoreCard $scoreCard -pins 7
         {Bowling-Roll -scoreCard $scoreCard -pins 7} | Should -Throw
+    }
+    It 'Rolling a spare in the first frame will be correctly scored in the second frame' {
+      $scoreCard = Get-Bowling
+      Bowling-Roll -scoreCard $scoreCard -pins 8
+      Bowling-Roll -scoreCard $scoreCard -pins 2
+      Bowling-Roll -scoreCard $scoreCard -pins 7
+      Bowling-Roll -scoreCard $scoreCard -pins 1
+      $scoreCard.score | Should -Be(25)
+    }
+    It 'Rolling two spares in a row, should be correctly scored in the third frame' {
+      $scoreCard = Get-Bowling
+      # Frame 1 - Spare
+      Bowling-Roll -scoreCard $scoreCard -pins 8
+      Bowling-Roll -scoreCard $scoreCard -pins 2
+      # Frame 2 - Spare
+      Bowling-Roll -scoreCard $scoreCard -pins 7
+      #$scoreCard.score | Should -Be(24) BAD PROGRAMMER b/c testing behaviour not output
+      Bowling-Roll -scoreCard $scoreCard -pins 3
+      # Frame 3 - No Spare
+      Bowling-Roll -scoreCard $scoreCard -pins 7
+      #$scoreCard.score | Should -Be(41) # BAD PROGRAMMER b/c testing behaviour not output
+      Bowling-Roll -scoreCard $scoreCard -pins 2
+      $scoreCard.score | Should -Be(43)
+    }
+    It 'Rolling ten spares in a row, after an extra ball, will calculate the total score correctly' {
+        $scoreCard = Get-Bowling
 
+        for($i = 0; $i -lt 10; $i++) {
+            Bowling-Roll -scoreCard $scoreCard -pins 8
+            Bowling-Roll -scoreCard $scoreCard -pins 2
+        }
+        # I get an extra ball
+        Bowling-Roll -scoreCard $scoreCard -pins 8
+        $scoreCard.score | Should -Be(180)
+    }
+    It 'Rolling 9 for the first 9 frames, and then more than 10 in the 10th frame is scored correctly' {
+        $scoreCard = Get-Bowling
+
+        for($i = 0; $i -lt 9; $i++) {
+            Bowling-Roll -scoreCard $scoreCard -pins 7
+            Bowling-Roll -scoreCard $scoreCard -pins 2
+        }
+        # tenth frame, first 2 balls total 10
+        Bowling-Roll -scoreCard $scoreCard -pins 7
+        Bowling-Roll -scoreCard $scoreCard -pins 3
+        # I get an extra ball
+        Bowling-Roll -scoreCard $scoreCard -pins 8
+        $scoreCard.score | Should -Be(99)
     }
 }
